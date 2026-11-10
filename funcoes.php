@@ -118,3 +118,30 @@ function rodape() {
 </html>
 <?php
 }
+
+// Converte uma data de 2026-11-10 para 10/11/2026
+function formatar_data($data) {
+    $partes = explode('-', $data);
+    if (count($partes) !== 3) {
+        return $data;
+    }
+    return $partes[2] . '/' . $partes[1] . '/' . $partes[0];
+}
+
+// Compara dois eventos por data e horário (usada pelo usort)
+function comparar_eventos($a, $b) {
+    return strcmp($a['data'] . ' ' . $a['horario'], $b['data'] . ' ' . $b['horario']);
+}
+
+// Devolve os próximos eventos (a partir de hoje), ordenados, limitados a $limite
+function proximos_eventos($limite) {
+    $hoje = date('Y-m-d');
+    $proximos = [];
+    foreach (ler_json(ARQ_EVENTOS) as $evento) {
+        if ($evento['data'] >= $hoje) {
+            $proximos[] = $evento;
+        }
+    }
+    usort($proximos, 'comparar_eventos');
+    return array_slice($proximos, 0, $limite);
+}

@@ -169,3 +169,23 @@ textarea:focus {
 .texto-centro {
     text-align: center;
 }
+
+/* ---------- Listas de eventos ---------- */
+.lista-eventos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.evento-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.evento-item:last-child {
+    border-bottom: none;
+}
