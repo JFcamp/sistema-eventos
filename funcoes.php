@@ -145,3 +145,45 @@ function proximos_eventos($limite) {
     usort($proximos, 'comparar_eventos');
     return array_slice($proximos, 0, $limite);
 }
+
+// Valida os dados de um evento e devolve um array de erros (vazio se estiver tudo certo)
+function validar_evento($nome, $descricao, $data, $horario, $local) {
+    $erros = [];
+
+    if ($nome === '') {
+        $erros['nome'] = 'Informe o nome do evento.';
+    } elseif (strlen($nome) > 100) {
+        $erros['nome'] = 'O nome deve ter no máximo 100 caracteres.';
+    }
+
+    if ($descricao === '') {
+        $erros['descricao'] = 'Informe a descrição.';
+    } elseif (strlen($descricao) > 500) {
+        $erros['descricao'] = 'A descrição deve ter no máximo 500 caracteres.';
+    }
+
+    // A data deve existir de verdade (checkdate) e não pode estar no passado
+    $partes = explode('-', $data);
+    if ($data === '') {
+        $erros['data'] = 'Informe a data.';
+    } elseif (count($partes) !== 3 || strlen($partes[0]) !== 4 || !checkdate((int) $partes[1], (int) $partes[2], (int) $partes[0])) {
+        $erros['data'] = 'Informe uma data válida.';
+    } elseif ($data < date('Y-m-d')) {
+        $erros['data'] = 'A data não pode estar no passado.';
+    }
+
+    // Horário no formato HH:MM
+    if ($horario === '') {
+        $erros['horario'] = 'Informe o horário.';
+    } elseif (!preg_match('/^([01][0-9]|2[0-3]):[0-5][0-9]$/', $horario)) {
+        $erros['horario'] = 'Informe um horário válido.';
+    }
+
+    if ($local === '') {
+        $erros['local'] = 'Informe o local.';
+    } elseif (strlen($local) > 100) {
+        $erros['local'] = 'O local deve ter no máximo 100 caracteres.';
+    }
+
+    return $erros;
+}
