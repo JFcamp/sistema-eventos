@@ -161,3 +161,10 @@ function validarEvento() {
 
     return ok;
 }
+
+// ---------- Meus agendamentos ----------
+
+// Pede confirmação antes de cancelar (OK envia o formulário, Cancelar não envia)
+function confirmarCancelamento() {
+    return confirm('Tem certeza que deseja cancelar este agendamento?');
+}
