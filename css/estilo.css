@@ -215,3 +215,71 @@ textarea:focus {
 .botao-perigo:focus {
     background: #7f1620;
 }
+
+/* ---------- Campo de senha com botão mostrar/ocultar ---------- */
+.campo-senha {
+    display: flex;
+    gap: 8px;
+}
+
+.botao-senha {
+    padding: 0 14px;
+    font-size: 14px;
+    color: var(--cor-principal-escura);
+    background: #e6efea;
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.botao-senha:hover,
+.botao-senha:focus {
+    background: #d3e3da;
+}
+
+/* ---------- Foco visível para navegação por teclado ---------- */
+a:focus,
+button:focus {
+    outline: 3px solid #f2b705;
+    outline-offset: 2px;
+}
+
+/* ---------- Telas menores (celulares) ---------- */
+@media (max-width: 600px) {
+    .container {
+        margin: 12px auto;
+        padding: 0 10px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    /* Menu em coluna, um item por linha */
+    .menu ul {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .menu a {
+        padding: 12px 8px;
+    }
+
+    /* Itens de evento: texto em cima, botões embaixo */
+    .evento-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .acoes {
+        flex-wrap: wrap;
+    }
+
+    .botao {
+        padding: 12px 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
