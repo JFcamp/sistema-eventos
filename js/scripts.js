@@ -168,3 +168,19 @@ function validarEvento() {
 function confirmarCancelamento() {
     return confirm('Tem certeza que deseja cancelar este agendamento?');
 }
+
+// ---------- Mostrar / ocultar senha ----------
+
+// Troca o campo entre type="password" (oculto) e type="text" (visível)
+function alternarSenha(idCampo, botao) {
+    var campo = document.getElementById(idCampo);
+    if (campo.type === 'password') {
+        campo.type = 'text';
+        botao.textContent = 'Ocultar';
+        botao.setAttribute('aria-label', 'Ocultar senha');
+    } else {
+        campo.type = 'password';
+        botao.textContent = 'Mostrar';
+        botao.setAttribute('aria-label', 'Mostrar senha');
+    }
+}
