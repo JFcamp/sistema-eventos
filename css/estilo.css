@@ -1,0 +1,157 @@
+/* Único arquivo CSS do sistema */
+
+/* ---------- Cores e tipografia base ---------- */
+:root {
+    --cor-principal: #1a5f3f;
+    --cor-principal-escura: #124530;
+    --cor-fundo: #f4f6f5;
+    --cor-card: #ffffff;
+    --cor-texto: #222222;
+    --cor-borda: #c9d1cd;
+    --cor-sucesso: #155724;
+    --fundo-sucesso: #d4edda;
+    --cor-erro: #721c24;
+    --fundo-erro: #f8d7da;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--cor-texto);
+    background: var(--cor-fundo);
+}
+
+h1, h2 {
+    color: var(--cor-principal-escura);
+    margin-top: 0;
+}
+
+a {
+    color: var(--cor-principal);
+}
+
+/* ---------- Layout geral ---------- */
+.container {
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+.card {
+    background: var(--cor-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 16px;
+}
+
+/* ---------- Menu de navegação ---------- */
+.menu {
+    background: var(--cor-principal);
+    padding: 0 16px;
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 900px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.menu a {
+    display: block;
+    padding: 14px 16px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.menu a:hover,
+.menu a:focus {
+    background: var(--cor-principal-escura);
+}
+
+/* ---------- Formulários ---------- */
+.formulario {
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.campo {
+    margin-bottom: 16px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-family: inherit;
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+}
+
+input:focus,
+textarea:focus {
+    outline: 2px solid var(--cor-principal);
+}
+
+.erro-campo {
+    display: block;
+    color: var(--cor-erro);
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+/* ---------- Botões ---------- */
+.botao {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background: var(--cor-principal);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.botao:hover,
+.botao:focus {
+    background: var(--cor-principal-escura);
+}
+
+/* ---------- Mensagens de sucesso e erro ---------- */
+.mensagem {
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.mensagem.sucesso {
+    color: var(--cor-sucesso);
+    background: var(--fundo-sucesso);
+}
+
+.mensagem.erro {
+    color: var(--cor-erro);
+    background: var(--fundo-erro);
+}
