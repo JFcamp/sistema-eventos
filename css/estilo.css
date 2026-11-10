@@ -199,3 +199,19 @@ textarea:focus {
 .detalhes dd {
     margin: 0;
 }
+
+/* ---------- Ações (botões lado a lado) e botão de perigo ---------- */
+.acoes {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.botao-perigo {
+    background: #a71d2a;
+}
+
+.botao-perigo:hover,
+.botao-perigo:focus {
+    background: #7f1620;
+}
