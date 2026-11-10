@@ -189,3 +189,13 @@ textarea:focus {
 .evento-item:last-child {
     border-bottom: none;
 }
+
+/* ---------- Detalhes do evento ---------- */
+.detalhes dt {
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.detalhes dd {
+    margin: 0;
+}

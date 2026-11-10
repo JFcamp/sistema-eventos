@@ -187,3 +187,23 @@ function validar_evento($nome, $descricao, $data, $horario, $local) {
 
     return $erros;
 }
+
+// Procura um evento pelo id (devolve o evento ou null)
+function buscar_evento($id) {
+    foreach (ler_json(ARQ_EVENTOS) as $evento) {
+        if ($evento['id'] === (int) $id) {
+            return $evento;
+        }
+    }
+    return null;
+}
+
+// Confere se o usuário já agendou o evento
+function ja_agendado($usuario_id, $evento_id) {
+    foreach (ler_json(ARQ_AGENDAMENTOS) as $agendamento) {
+        if ($agendamento['usuario_id'] === $usuario_id && $agendamento['evento_id'] === (int) $evento_id) {
+            return true;
+        }
+    }
+    return false;
+}
