@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 session_regenerate_id(true);
                 $_SESSION['usuario_id'] = $usuario['id'];
                 $_SESSION['usuario_nome'] = $usuario['nome'];
+                definir_mensagem('sucesso', 'Login realizado com sucesso!');
                 header('Location: inicio.php');
                 exit;
             }
@@ -51,7 +52,9 @@ cabecalho('Login');
 <div class="card formulario">
     <h1>Entrar</h1>
 <?php if (isset($erros['geral'])) { ?>
-    <div class="mensagem erro"><?= texto_erro($erros, 'geral') ?></div>
+    <div class="mensagem erro" role="alert"><?= texto_erro($erros, 'geral') ?></div>
+<?php } elseif (count($erros) > 0) { ?>
+    <div class="mensagem erro" role="alert">Corrija os campos indicados abaixo.</div>
 <?php } ?>
     <form id="form-login" method="post" action="login.php" onsubmit="return validarLogin()" novalidate>
         <div class="campo">
@@ -61,7 +64,10 @@ cabecalho('Login');
         </div>
         <div class="campo">
             <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha">
+            <div class="campo-senha">
+                <input type="password" id="senha" name="senha">
+                <button type="button" class="botao-senha" onclick="alternarSenha('senha', this)" aria-label="Mostrar senha">Mostrar</button>
+            </div>
             <span class="erro-campo" id="erro-senha"><?= texto_erro($erros, 'senha') ?></span>
         </div>
         <button type="submit" class="botao">Entrar</button>

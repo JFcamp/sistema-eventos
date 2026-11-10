@@ -66,7 +66,8 @@ function exibir_mensagem() {
     if (isset($_SESSION['mensagem'])) {
         $tipo = $_SESSION['mensagem']['tipo'];
         $texto = $_SESSION['mensagem']['texto'];
-        echo '<div class="mensagem ' . htmlspecialchars($tipo) . '">' . htmlspecialchars($texto) . '</div>';
+        // role="alert" faz leitores de tela anunciarem a mensagem
+        echo '<div class="mensagem ' . htmlspecialchars($tipo) . '" role="alert">' . htmlspecialchars($texto) . '</div>';
         unset($_SESSION['mensagem']);
     }
 }
