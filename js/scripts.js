@@ -70,3 +70,29 @@ function validarCadastro() {
     // Retornar false cancela o envio do formulário
     return ok;
 }
+
+// ---------- Login ----------
+
+function validarLogin() {
+    var form = document.getElementById('form-login');
+    var email = form.email.value.trim();
+    var senha = form.senha.value;
+    var ok = true;
+
+    limparErros(form);
+
+    if (email === '') {
+        mostrarErro('email', 'Informe o e-mail.');
+        ok = false;
+    } else if (!emailValido(email)) {
+        mostrarErro('email', 'Informe um e-mail válido.');
+        ok = false;
+    }
+
+    if (senha === '') {
+        mostrarErro('senha', 'Informe a senha.');
+        ok = false;
+    }
+
+    return ok;
+}
