@@ -96,3 +96,68 @@ function validarLogin() {
 
     return ok;
 }
+
+// ---------- Criar evento ----------
+
+function validarEvento() {
+    var form = document.getElementById('form-evento');
+    var nome = form.nome.value.trim();
+    var descricao = form.descricao.value.trim();
+    var data = form.data.value;
+    var horario = form.horario.value;
+    var local = form.local.value.trim();
+    var ok = true;
+
+    limparErros(form);
+
+    if (nome === '') {
+        mostrarErro('nome', 'Informe o nome do evento.');
+        ok = false;
+    } else if (nome.length > 100) {
+        mostrarErro('nome', 'O nome deve ter no máximo 100 caracteres.');
+        ok = false;
+    }
+
+    if (descricao === '') {
+        mostrarErro('descricao', 'Informe a descrição.');
+        ok = false;
+    } else if (descricao.length > 500) {
+        mostrarErro('descricao', 'A descrição deve ter no máximo 500 caracteres.');
+        ok = false;
+    }
+
+    // Monta a data de hoje no formato AAAA-MM-DD para comparar
+    var agora = new Date();
+    var mes = String(agora.getMonth() + 1).padStart(2, '0');
+    var dia = String(agora.getDate()).padStart(2, '0');
+    var hoje = agora.getFullYear() + '-' + mes + '-' + dia;
+
+    if (data === '') {
+        mostrarErro('data', 'Informe a data.');
+        ok = false;
+    } else if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) {
+        mostrarErro('data', 'Informe uma data válida.');
+        ok = false;
+    } else if (data < hoje) {
+        mostrarErro('data', 'A data não pode estar no passado.');
+        ok = false;
+    }
+
+    if (horario === '') {
+        mostrarErro('horario', 'Informe o horário.');
+        ok = false;
+    } else if (!/^([01][0-9]|2[0-3]):[0-5][0-9]$/.test(horario)) {
+        mostrarErro('horario', 'Informe um horário válido.');
+        ok = false;
+    }
+
+    if (local === '') {
+        mostrarErro('local', 'Informe o local.');
+        ok = false;
+    } else if (local.length > 100) {
+        mostrarErro('local', 'O local deve ter no máximo 100 caracteres.');
+        ok = false;
+    }
+
+    return ok;
+}
