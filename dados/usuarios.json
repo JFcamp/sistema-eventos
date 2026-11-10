@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "id": 1,
+        "nome": "Usuario de Teste",
+        "email": "teste@exemplo.com",
+        "senha": "$2y$12$sDlv4A\/oCCi8j9DtB4r6RutjWdyuElwaLOceMBLEKMfZf1.yuS08."
+    }
+]
