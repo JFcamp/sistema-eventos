@@ -72,6 +72,9 @@ cabecalho('Cadastro');
 ?>
 <div class="card formulario">
     <h1>Criar conta</h1>
+<?php if (count($erros) > 0) { ?>
+    <div class="mensagem erro" role="alert">Corrija os campos indicados abaixo.</div>
+<?php } ?>
     <form id="form-cadastro" method="post" action="cadastro.php" onsubmit="return validarCadastro()" novalidate>
         <div class="campo">
             <label for="nome">Nome</label>
@@ -85,12 +88,18 @@ cabecalho('Cadastro');
         </div>
         <div class="campo">
             <label for="senha">Senha</label>
-            <input type="password" id="senha" name="senha">
+            <div class="campo-senha">
+                <input type="password" id="senha" name="senha">
+                <button type="button" class="botao-senha" onclick="alternarSenha('senha', this)" aria-label="Mostrar senha">Mostrar</button>
+            </div>
             <span class="erro-campo" id="erro-senha"><?= texto_erro($erros, 'senha') ?></span>
         </div>
         <div class="campo">
             <label for="confirmar_senha">Confirmar senha</label>
-            <input type="password" id="confirmar_senha" name="confirmar_senha">
+            <div class="campo-senha">
+                <input type="password" id="confirmar_senha" name="confirmar_senha">
+                <button type="button" class="botao-senha" onclick="alternarSenha('confirmar_senha', this)" aria-label="Mostrar confirmação de senha">Mostrar</button>
+            </div>
             <span class="erro-campo" id="erro-confirmar_senha"><?= texto_erro($erros, 'confirmar_senha') ?></span>
         </div>
         <button type="submit" class="botao">Cadastrar</button>

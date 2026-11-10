@@ -43,6 +43,9 @@ cabecalho('Criar evento');
 ?>
 <div class="card formulario">
     <h1>Criar evento</h1>
+<?php if (count($erros) > 0) { ?>
+    <div class="mensagem erro" role="alert">Corrija os campos indicados abaixo.</div>
+<?php } ?>
     <form id="form-evento" method="post" action="criar-evento.php" onsubmit="return validarEvento()" novalidate>
         <div class="campo">
             <label for="nome">Nome</label>
