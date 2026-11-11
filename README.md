@@ -86,14 +86,12 @@ Também é possível criar novas contas na tela de cadastro.
 
 ## Telas
 
-<!-- Adicione os prints na pasta prints/ e ajuste os nomes abaixo -->
-
 | Tela | Imagem |
 |------|--------|
-| Cadastro | ![Cadastro](prints/cadastro.png) |
-| Login | ![Login](prints/login.png) |
-| Página inicial | ![Início](prints/inicio.png) |
-| Criar evento | ![Criar evento](prints/criar-evento.png) |
-| Lista de eventos | ![Eventos](prints/eventos.png) |
-| Detalhes do evento | ![Detalhes](prints/detalhes.png) |
-| Meus agendamentos | ![Meus agendamentos](prints/meus-agendamentos.png) |
+| Cadastro | ![Cadastro](docs/telas/cadastro.jpg) |
+| Login | ![Login](docs/telas/login.jpg) |
+| Página inicial | ![Início](docs/telas/inicio.jpg) |
+| Criar evento | ![Criar evento](docs/telas/criar-evento.jpg) |
+| Lista de eventos | ![Eventos](docs/telas/eventos.jpg) |
+| Detalhes do evento | ![Detalhes](docs/telas/detalhes.jpg) |
+| Meus agendamentos | ![Meus agendamentos](docs/telas/meus-agendamentos.jpg) |
