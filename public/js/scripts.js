@@ -126,11 +126,15 @@ function validarEvento() {
         ok = false;
     }
 
-    // Monta a data de hoje no formato AAAA-MM-DD para comparar
+    // Monta a data de hoje (AAAA-MM-DD) e a hora atual (HH:MM) para comparar
     var agora = new Date();
     var mes = String(agora.getMonth() + 1).padStart(2, '0');
     var dia = String(agora.getDate()).padStart(2, '0');
     var hoje = agora.getFullYear() + '-' + mes + '-' + dia;
+    var hora = String(agora.getHours()).padStart(2, '0') + ':' + String(agora.getMinutes()).padStart(2, '0');
+
+    var dataOk = false;
+    var horarioOk = false;
 
     if (data === '') {
         mostrarErro('data', 'Informe a data.');
@@ -138,9 +142,8 @@ function validarEvento() {
     } else if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) {
         mostrarErro('data', 'Informe uma data válida.');
         ok = false;
-    } else if (data < hoje) {
-        mostrarErro('data', 'A data não pode estar no passado.');
-        ok = false;
+    } else {
+        dataOk = true;
     }
 
     if (horario === '') {
@@ -148,6 +151,22 @@ function validarEvento() {
         ok = false;
     } else if (!/^([01][0-9]|2[0-3]):[0-5][0-9]$/.test(horario)) {
         mostrarErro('horario', 'Informe um horário válido.');
+        ok = false;
+    } else {
+        horarioOk = true;
+    }
+
+    // Data e horário juntos não podem estar no passado.
+    // "AAAA-MM-DD HH:MM" pode ser comparado como texto, porque vai do maior para o menor.
+    var msgPassado = 'A data e o horário não podem estar no passado.';
+    if (dataOk && horarioOk) {
+        if (data + ' ' + horario < hoje + ' ' + hora) {
+            mostrarErro('data', msgPassado);
+            ok = false;
+        }
+    } else if (dataOk && data < hoje) {
+        // Sem horário válido, ainda dá para recusar um dia que já passou
+        mostrarErro('data', msgPassado);
         ok = false;
     }
 

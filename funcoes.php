@@ -7,10 +7,13 @@ session_start();
 // Fuso horário usado nas comparações de data
 date_default_timezone_set('America/Sao_Paulo');
 
+// Pasta dos dados: fica FORA da pasta public/, então o navegador não acessa os JSON
+define('PASTA_DADOS', __DIR__ . '/dados');
+
 // Caminhos dos arquivos JSON onde os dados ficam salvos
-define('ARQ_USUARIOS', __DIR__ . '/dados/usuarios.json');
-define('ARQ_EVENTOS', __DIR__ . '/dados/eventos.json');
-define('ARQ_AGENDAMENTOS', __DIR__ . '/dados/agendamentos.json');
+define('ARQ_USUARIOS', PASTA_DADOS . '/usuarios.json');
+define('ARQ_EVENTOS', PASTA_DADOS . '/eventos.json');
+define('ARQ_AGENDAMENTOS', PASTA_DADOS . '/agendamentos.json');
 
 // Lê um arquivo JSON e devolve um array (vazio se o arquivo não existir ou estiver inválido)
 function ler_json($arquivo) {
@@ -163,14 +166,12 @@ function validar_evento($nome, $descricao, $data, $horario, $local) {
         $erros['descricao'] = 'A descrição deve ter no máximo 500 caracteres.';
     }
 
-    // A data deve existir de verdade (checkdate) e não pode estar no passado
+    // A data deve existir de verdade (checkdate)
     $partes = explode('-', $data);
     if ($data === '') {
         $erros['data'] = 'Informe a data.';
     } elseif (count($partes) !== 3 || strlen($partes[0]) !== 4 || !checkdate((int) $partes[1], (int) $partes[2], (int) $partes[0])) {
         $erros['data'] = 'Informe uma data válida.';
-    } elseif ($data < date('Y-m-d')) {
-        $erros['data'] = 'A data não pode estar no passado.';
     }
 
     // Horário no formato HH:MM
@@ -178,6 +179,18 @@ function validar_evento($nome, $descricao, $data, $horario, $local) {
         $erros['horario'] = 'Informe o horário.';
     } elseif (!preg_match('/^([01][0-9]|2[0-3]):[0-5][0-9]$/', $horario)) {
         $erros['horario'] = 'Informe um horário válido.';
+    }
+
+    // Data e horário juntos não podem estar no passado.
+    // "AAAA-MM-DD HH:MM" pode ser comparado como texto, porque vai do maior para o menor.
+    $msg_passado = 'A data e o horário não podem estar no passado.';
+    if (!isset($erros['data']) && !isset($erros['horario'])) {
+        if ($data . ' ' . $horario < date('Y-m-d H:i')) {
+            $erros['data'] = $msg_passado;
+        }
+    } elseif (!isset($erros['data']) && $data < date('Y-m-d')) {
+        // Sem horário válido, ainda dá para recusar um dia que já passou
+        $erros['data'] = $msg_passado;
     }
 
     if ($local === '') {

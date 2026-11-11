@@ -1,6 +1,6 @@
 <?php
 // Lista de todos os eventos (área interna)
-require 'funcoes.php';
+require __DIR__ . '/../funcoes.php';
 exigir_login();
 
 // Eventos ordenados por data e horário

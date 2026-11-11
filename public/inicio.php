@@ -1,6 +1,6 @@
 <?php
 // Página inicial (área interna)
-require 'funcoes.php';
+require __DIR__ . '/../funcoes.php';
 exigir_login();
 
 // Até 5 eventos que ainda vão acontecer

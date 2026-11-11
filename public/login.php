@@ -1,6 +1,6 @@
 <?php
 // Login do usuário
-require 'funcoes.php';
+require __DIR__ . '/../funcoes.php';
 
 // Quem já está logado vai direto para o início
 if (esta_logado()) {

@@ -1,6 +1,6 @@
 <?php
 // Lista os agendamentos do usuário logado (área interna)
-require 'funcoes.php';
+require __DIR__ . '/../funcoes.php';
 exigir_login();
 
 $usuario_id = $_SESSION['usuario_id'];

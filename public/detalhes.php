@@ -1,6 +1,6 @@
 <?php
 // Detalhes de um evento (área interna)
-require 'funcoes.php';
+require __DIR__ . '/../funcoes.php';
 exigir_login();
 
 // O id vem pela URL: detalhes.php?id=1

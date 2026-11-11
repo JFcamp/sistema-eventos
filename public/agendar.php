@@ -1,6 +1,6 @@
 <?php
 // Agenda a participação do usuário logado em um evento
-require 'funcoes.php';
+require __DIR__ . '/../funcoes.php';
 exigir_login();
 
 // Só aceita envio de formulário (POST)

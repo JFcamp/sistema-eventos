@@ -1,6 +1,6 @@
 <?php
 // Cancela um agendamento do usuário logado
-require 'funcoes.php';
+require __DIR__ . '/../funcoes.php';
 exigir_login();
 
 // Só aceita envio de formulário (POST)

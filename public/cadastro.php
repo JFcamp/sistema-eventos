@@ -1,6 +1,6 @@
 <?php
 // Cadastro de novos usuários
-require 'funcoes.php';
+require __DIR__ . '/../funcoes.php';
 
 // Quem já está logado não precisa se cadastrar
 if (esta_logado()) {

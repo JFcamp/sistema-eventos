@@ -1,6 +1,6 @@
 <?php
 // Encerra a sessão do usuário
-require 'funcoes.php';
+require __DIR__ . '/../funcoes.php';
 
 // Remove os dados do usuário e guarda uma mensagem para a tela de login
 unset($_SESSION['usuario_id']);

@@ -1,6 +1,6 @@
 <?php
 // Cadastro de um novo evento (área interna)
-require 'funcoes.php';
+require __DIR__ . '/../funcoes.php';
 exigir_login();
 
 $erros = [];
